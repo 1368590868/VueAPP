@@ -3,6 +3,7 @@
       <home-header></home-header> 
       <home-swiper :swiperList="swiperList"></home-swiper>
       <home-icon :iconList="iconList"></home-icon>
+      <Content :recommendList='recommendList'></Content>
   </div>
 </template>
 
@@ -11,19 +12,23 @@
 import HomeHeader from './components/HomeHeader'
 import HomeSwiper from './components/HomeSwiper'
 import HomeIcon from './components/HomeIcon'
+import Content from './components/Content'
 import axios from 'axios'
+
 export default {
   name: "home",
   components: {
     HomeHeader,
     HomeSwiper,
-    HomeIcon
+    HomeIcon,
+    Content
 
   },
   data(){
     return{
       swiperList:[],
-      iconList:[]
+      iconList:[],
+      recommendList:[]      //主题内容
     }
   },
   methods:{
@@ -33,6 +38,7 @@ export default {
     getHomeInfoSuccess(res){
       this.swiperList=res.data.data.swiperList
       this.iconList = res.data.data.iconList
+      this.recommendList = res.data.data.recommendList  //获取indexjson数据
     }
   },
   mounted(){
